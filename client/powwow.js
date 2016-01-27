@@ -1,4 +1,5 @@
 Template.powwow.onRendered(function() {
     //this.$('.datetimepicker').datetimepicker();
-    $('#pick-a-time').lolliclock({autoclose:true});
+    $('#start-time').lolliclock({autoclose:true});
+    $('#end-time').lolliclock({autoclose:true});
 });
