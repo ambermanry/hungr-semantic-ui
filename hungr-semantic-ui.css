@@ -58,6 +58,7 @@
 .lolliclock-colon {
     opacity: 0.6;
     cursor: default;
+    margin-top: 5px;
 }
 .lolliclock-minutes {
     width: 51px;
@@ -81,6 +82,7 @@
 .lolliclock-time-old {
     opacity: 1;
     height: 54px;
+    margin-top: 10px;
 }
 .lolliclock-time-new {
     opacity: 0;
