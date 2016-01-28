@@ -7,10 +7,11 @@ Template.newEvent.onRendered(function() {
 Template.newEvent.events({
     'click .submit': function(event){
         event.preventDefault();
-        console.log("submit clicked");
+        console.log("startTime:" + timeToDate($("#startTime").val()));
         Events.insert({
             place: $("#place").val(),
-            startTime: $("#startTime").val(),
+            startTime: timeToDate($("#startTime").val()),
+            startTimeDisplay: $("#startTime").val(),
             endTime: $("#endTime").val(),
             notes: $("#notes").val(),
             createdAt: new Date(),
