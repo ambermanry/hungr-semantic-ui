@@ -8,7 +8,7 @@ Template.newevent.events({
     'click .submit': function(event){
         event.preventDefault();
         console.log("submit clicked");
-        Suggestions.insert({
+        Events.insert({
             place: $("#place").val(),
             startTime: $("#startTime").val(),
             endTime: $("#endTime").val(),
