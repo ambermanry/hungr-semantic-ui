@@ -1,10 +1,10 @@
-Template.powwow.onRendered(function() {
+Template.newevent.onRendered(function() {
     //create time picker
     $('#startTime').lolliclock({autoclose:true});
     $('#endTime').lolliclock({autoclose:true});
 });
 
-Template.powwow.events({
+Template.newevent.events({
     'click .submit': function(event){
         event.preventDefault();
         console.log("submit clicked");
