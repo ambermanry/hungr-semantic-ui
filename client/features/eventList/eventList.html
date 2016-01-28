@@ -1,37 +1,26 @@
 <template name="eventList">
-    <div class="ui card fluid">
-        <div class="content">
-            <div class="header"><div class="ui blue ribbon label">{{startTime}} - {{endTime}}</div> {{place}}</div>
-        </div>
-        <div class="content">
-            <h4 class="ui sub header">{{numAttending}} people going {{notes}}</h4>
-            <div class="ui small feed">
-                <div class="event">
-                    <div class="content">
-                        <div class="summary">
-                            <a>Elliot Fu</a> added <a>Jenny Hess</a> to the project
-                        </div>
-                    </div>
+    <div class="ui items segment">
+        <div class="item">
+            <div class="content">
+                <div class="header"><div class="ui blue ribbon label">{{startTime}} - {{endTime}}</div> {{place}}</div>
+
+                <h4 class="ui sub header">people going: {{participants}} </h4>
+                <div class="meta">
+                    <span>Notes</span>
                 </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="summary">
-                            <a>Stevie Feliciano</a> was added as an <a>Administrator</a>
-                        </div>
-                    </div>
+                <div class="description">
+                    <p>{{notes}}</p>
                 </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="summary">
-                            <a>Helen Troy</a> added two pictures
-                        </div>
-                    </div>
+                <div class="extra">
+                    Additional Details
+                </div>
+                <div class="extra content">
+                    <button class="ui button">Join</button>
                 </div>
             </div>
         </div>
-        <div class="extra content">
-            <button class="ui button">Join Project</button>
-        </div>
+
     </div>
+    
 </template>
 
