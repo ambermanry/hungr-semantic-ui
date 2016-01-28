@@ -1,7 +1,19 @@
 <body>
-<h1>ICF Olson Hungr</h1>
-{{> newevent}}
-{{#each events}}
-{{> eventlist}}
-{{/each}}
+	
 </body>
+
+<template name="layoutTemplate">
+    {{#if currentUser}}
+        	{{> sidebar}}
+	{{/if}}
+    <div class="pusher">
+	    {{> navbar}}
+	    {{> loginModal}}
+        {{#if currentUser}}
+            {{> loginMessage}}
+        {{else}}
+            {{> guestMessage}}
+        {{/if}}
+        {{> yield}}
+	</div>
+</template>

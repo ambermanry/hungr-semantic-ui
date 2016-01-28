@@ -1,6 +1,7 @@
-// This code only runs on the client
-Template.body.helpers({
-    events: function () {
-        return Events.find({}, {sort: {startTime: 1}});
-    }
-});
+if(Meteor.isClient){
+	Template.lunchroom.helpers({
+    		'events' : function () {
+        		return Events.find({}, {sort: {startTime: 1}});
+    	}
+	});
+}

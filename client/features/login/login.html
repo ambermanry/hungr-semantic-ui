@@ -1,0 +1,60 @@
+<template name="loginModal">
+    <div class="ui modal" name="signInModal">
+        <div class="header"> Login </div>
+        <div class="content">
+            <form class="ui form segment" method="post" action="#" name="loginFields">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" id="username" placeholder="E-mail Address" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" id="password" placeholder="Password" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="field registration_field" id="registrationPasswordConfirmation">
+                    <div class="ui left icon input">
+                        <i class="check icon"></i>
+                        <input type="password" name="confirm" id="confirm" placeholder="Confirm Password" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="registration_field">
+                    <div class="ui horizontal divider registration_field">
+                        AND
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field registration_field">
+                        <input type="text" name="first" id="first" placeholder="First Name" autocomplete="off"/>
+                    </div>
+                    <div class="field registration_field">
+                        <input type="text" name="last" id="last" placeholder="Last Name" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="registration_field">
+                    <div class="ui horizontal divider">
+                        OR
+                    </div>
+                </div>
+                <div class="field registration_field">
+                    <input type="text" name="display" id="display" placeholder="Display Name" autocomplete="off"/>
+                </div>
+                <div class="ui error message"></div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui cancel button signIn" data-method="cancel">Cancel</div>
+            <div class="ui cancel button signIn" data-method="register">
+                <i class="add user icon"></i>    
+                Register
+            </div>
+            <div class="ui ok blue button signIn" name="loginSubmit" data-method="login">
+                <i class="sign in icon"></i>
+                Login
+            </div>
+        </div>
+    </div>
+</template>

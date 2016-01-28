@@ -1,0 +1,19 @@
+<template name="navbar">
+    <nav class="ui inverted menu">
+        <h3 class="header item">Hungr</h3>
+        
+        {{#if currentUser}}
+            <a class="item">Lunchrooms</a>
+            <div class="ui floating right dropdown icon item" id="account">
+                <span class="text">Account</span>
+                <i class="dropdown icon"></i>
+                <div class="menu inverted">
+                    <a class="item" href="#" name="profile">Profile</a>
+                    <a class="item" href="#" name="logout">Sign Out</a>
+                </div>
+            </div>
+        {{else}}
+                <a class="float right item" href="#" name="signIn">Login</a>
+        {{/if}}
+    </nav>
+</template>
