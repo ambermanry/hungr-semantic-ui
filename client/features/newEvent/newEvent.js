@@ -1,10 +1,10 @@
-Template.newevent.onRendered(function() {
+Template.newEvent.onRendered(function() {
     //create time picker
     $('#startTime').lolliclock({autoclose:true});
     $('#endTime').lolliclock({autoclose:true});
 });
 
-Template.newevent.events({
+Template.newEvent.events({
     'click .submit': function(event){
         event.preventDefault();
         console.log("submit clicked");
