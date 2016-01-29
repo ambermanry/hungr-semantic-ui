@@ -47,19 +47,39 @@ Template.newEvent.events({
 
         $("form[name='newEventForm']").form(formValidationRules, formSettings);
         $("form[name='newEventForm']").submit();
-    },
-    'form submit' : function(e) {
-        e.preventDefault();
-        console.log('working');
-        console.log("startTime:" + timeToDate($("#startTime").val()));
-        Events.insert({
-            place: $("#place").val(),
-            startTime: timeToDate($("#startTime").val()),
-            startTimeDisplay: $("#startTime").val(),
-            endTime: $("#endTime").val(),
-            notes: $("#notes").val(),
-            createdAt: new Date(),
-            participants : [prompt("Who are you?")]
-        });
     }
+//    'form submit' : function() {
+//        //e.preventDefault();
+//        console.log('working');
+//        console.log("startTime:" + timeToDate($("#startTime").val()));
+//        Events.insert({
+//            place: $("#place").val(),
+//            startTime: timeToDate($("#startTime").val()),
+//            startTimeDisplay: $("#startTime").val(),
+//            endTime: timeToDate($("#endTime").val()),
+//            endTimeDisplay: $("#endTime").val(),
+//            notes: $("#notes").val(),
+//            createdAt: new Date(),
+//            participants : [prompt("Who are you?")]
+//        });
+//    }
 });
+
+Template.newEvent.rendered = function () {
+    $(document)
+        .on("submit", "form[name='newEventForm']", function (event) {
+            event.preventDefault();
+            console.log('working');
+            console.log("startTime:" + timeToDate($("#startTime").val()));
+            Events.insert({
+                place: $("#place").val(),
+                startTime: timeToDate($("#startTime").val()),
+                startTimeDisplay: $("#startTime").val(),
+                endTime: timeToDate($("#endTime").val()),
+                endTimeDisplay: $("#endTime").val(),
+                notes: $("#notes").val(),
+                createdAt: new Date(),
+                participants : [prompt("Who are you?")]
+            });
+    });
+};
