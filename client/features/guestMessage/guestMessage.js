@@ -1,9 +1,10 @@
 if(Meteor.isClient) {
     Template.guestMessage.rendered = function() {
-        Meteor.call('getDisplayName', function (error, result){
-            Session.set('userType','guest');
-            Session.set('displayName',result);
-        });
+        if(Session.get('userType')!='guest')
+            Meteor.call('getDisplayName', function (error, result){
+                Session.set('userType','guest');
+                Session.set('displayName',result);
+            });
     };
     
     Template.guestMessage.events({
