@@ -14,6 +14,7 @@ if(Meteor.isClient) {
             });
         },
         'click .header.item' : function () {
+            Router.go('home');
             /*$('#sidebar')
                 .sidebar('toggle');*/
         }
