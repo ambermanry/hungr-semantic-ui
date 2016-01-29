@@ -13,3 +13,7 @@ Template.eventList.events({
         }
     }
 });
+
+Template.eventList.rendered = function () {
+    $('.ui.accordion').accordion();
+};

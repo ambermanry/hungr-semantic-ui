@@ -7,7 +7,7 @@
                 <h4 class="ui sub header">people going: {{participants}} </h4>
                 <div class="ui right floated main menu">
                     <a class="bug popup icon item" data-content="Join">
-                        <i class="users icon" data-id="{{_id}}"></i>
+                        <i class="add user icon" data-id="{{_id}}"></i>
                     </a>
                     <a class="bug popup icon item" data-content="Edit" >
                         <i class="edit icon" data-id="{{_id}}"></i>
@@ -22,12 +22,16 @@
                 <div class="description">
                     <p>{{notes}}</p>
                 </div>
-                <div class="extra">
-                    Additional Details
+                <div class="ui accordion field">
+                    <div class="title active">
+                        <i class="icon dropdown"></i>
+                        Comments
+                    </div>
+                    <div class="content field">
+                        <input placeholder="Add your comments" type="text" class="transition visible" style="display: inline-block !important;">
+                        <i class="comment icon" data-id="{{_id}}"></i>
+                    </div>
                 </div>
-                <!--<div class="extra content">-->
-                    <!--<button class="ui button join" data-id="{{_id}}">Join</button>-->
-                <!--</div>-->
             </div>
         </div>
 
