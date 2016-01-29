@@ -3,7 +3,7 @@ Template.eventList.events({
         event.preventDefault();
         Events.remove(event.target.getAttribute("data-id"));
     },
-    "click .ui.button.join": function (event) {
+    "click .icon.users": function (event) {
         var eventId = event.target.getAttribute("data-id");
         var newParticipant = prompt("Who are you?");
         if(newParticipant != null) {
