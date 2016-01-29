@@ -12,8 +12,14 @@ if(Meteor.isClient) {
             $('#account').dropdown({
                 transition : 'drop', 
             });
+        },
+        'click .header.item' : function () {
+            Router.go('home');
+            /*$('#sidebar')
+                .sidebar('toggle');*/
         }
     });
+    
     
     // Helpers
     Template.navbar.helpers({

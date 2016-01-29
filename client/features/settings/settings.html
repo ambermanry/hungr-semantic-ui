@@ -1,0 +1,130 @@
+<template name="settings">
+    <div class="ui segment">
+        <div class="settings active" data-tab="display">
+            {{>displayNameSettings}}        
+        </div>
+        <div class="settings" data-tab="contact">
+            {{>contactSettings}}
+        </div>
+        <div class="settings" data-tab="account">
+            {{>accountSettings}}
+        </div>
+    </div>
+</template>
+
+<template name="settingsChoice">
+    <div class="ui vertical fluid tabular menu settingsChoice">
+        <a class="item active blue" data-tab="display">
+            Display Name Settings
+        </a>
+        <a class="item blue" data-tab="contact">
+            Contact Settings
+        </a>
+        <a class="item blue" data-tab="account">
+            Account Settings
+        </a>
+    </div>
+</template>
+
+<template name="displayNameSettings">
+    <div class="ui form displaySettings">
+        <div class="ui horizontal divider header"> What should we show? </div>
+        <div class="three fields">
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input tabindex="0" name="showDisplay" type="checkbox" {{showDisplay}}>
+                    <label>Display Name Only</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input tabindex="0" name="showFirst" type="checkbox" {{showFirst}}>
+                    <label>First Name</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input tabindex="0" name="showLast" type="checkbox" {{showLast}}>
+                    <label>Last Name</label>
+                </div>
+            </div>
+        </div>
+        <div class="ui horizontal divider header"> What is your name? </div>
+        <div class="field">
+            <label>Display</label>
+            <input name="displayName" type="text" placeholder="Display Name" value="{{displayNameValue}}"/>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>First</label>
+                <input name="firstName" type="text" placeholder="First Name" value="{{firstNameValue}}"/>
+            </div>
+            <div class="field">
+                <label>Last</label>
+                <input name="lastName" type="text" placeholder="Last Name" value="{{lastNameValue}}"/>
+            </div>
+        </div>
+        <div class="ui buttons float right">
+            <button class="ui blue button save" >Save</button>
+            <div class="or"></div>
+            <button class="ui red button reset" >Reset</button>
+        </div>
+    </div>
+</template>
+
+<template name="contactSettings">
+    <div class="ui form">
+        <div class="ui horizontal divider header"> May we contact you via </div>
+        <div class="two fields">
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input tabindex="0" name="allowSMS" type="checkbox" {{allowSMS}}>
+                    <label>Text / SMS</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input tabindex="0" name="allowEmail" type="checkbox" {{allowEmail}}>
+                    <label>Email</label>
+                </div>
+            </div>
+        </div>
+        <div class="ui horizontal divider header"> How may we get in touch with you? </div>
+        <div class="field">
+            <label>Text / SMS</label>
+            <input name="sms" type="text" placeholder="(555) 555-5555" value="{{smsValue}}"/>
+        </div>        
+        <div class="field">
+            <label>Email</label>
+            <input name="email" type="text" placeholder="sample@domain.com" value="{{emailValue}}"/>
+        </div>
+        <div class="ui buttons float right">
+            <button class="ui blue button save" >Save</button>
+            <div class="or"></div>
+            <button class="ui red button reset" >Reset</button>
+        </div>
+    </div>
+</template>
+
+<template name="accountSettings">
+    <div class="ui form">
+        <div class="ui horizontal divider header"> Change Password </div>
+        <div class="field">
+            <label>Current Password</label>
+            <input name="currentPassword" type="text" placeholder="Current Password"/>
+        </div>
+        <div class="field">
+            <label>New Password</label>
+            <input name="newPassword" type="text" placeholder="New Password"/>
+        </div>
+        <div class="field">
+            <label>Confirm New Password</label>
+            <input name="confirmPassword" type="text" placeholder="Confirm New Password"/>
+        </div>
+        <div class="ui buttons float right">
+            <button class="ui blue button save" >Save</button>
+            <div class="or"></div>
+            <button class="ui red button reset" >Reset</button>
+        </div>
+    </div>
+</template>

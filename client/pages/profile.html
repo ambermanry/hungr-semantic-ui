@@ -1,3 +1,11 @@
 <template name="profile">
-	<h1> Profile </h1>
+    <div class="ui grid">
+        <div class="three wide column stretched">
+            {{> settingsChoice}}
+        </div>
+        <div class="twelve wide column">
+            {{> settings}}
+        </div>
+        <div class="one wide column"></div>
+    </div>
 </template>
