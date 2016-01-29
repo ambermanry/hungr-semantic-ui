@@ -5,6 +5,14 @@
                 <div class="header"><div class="ui blue ribbon label">{{startTime}} - {{endTime}}</div> {{place}}</div>
 
                 <h4 class="ui sub header">people going: {{participants}} </h4>
+                <div class="ui right floated main menu">
+                    <a class="bug popup icon item" data-content="Edit" >
+                        <i class="edit icon" data-id="{{_id}}"></i>
+                    </a>
+                    <a class="bug popup icon item" data-content="Delete" >
+                        <i class="delete icon" data-id="{{_id}}"></i>
+                    </a>
+                </div>
                 <div class="meta">
                     <span>Notes</span>
                 </div>

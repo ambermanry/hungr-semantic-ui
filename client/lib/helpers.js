@@ -6,7 +6,6 @@ if(Meteor.isClient){
                 var end = new Date();
                 end.setHours(23,59,59,999);
                 return Events.find({"createdAt":{ "$gte":start, "$lt":end}},{sort: {startTime: 1}});
-        		//return Events.find({}, {sort: {startTime: 1}});
     	}
 	});
 }
