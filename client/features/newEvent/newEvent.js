@@ -48,21 +48,6 @@ Template.newEvent.events({
         $("form[name='newEventForm']").form(formValidationRules, formSettings);
         $("form[name='newEventForm']").submit();
     }
-//    'form submit' : function() {
-//        //e.preventDefault();
-//        console.log('working');
-//        console.log("startTime:" + timeToDate($("#startTime").val()));
-//        Events.insert({
-//            place: $("#place").val(),
-//            startTime: timeToDate($("#startTime").val()),
-//            startTimeDisplay: $("#startTime").val(),
-//            endTime: timeToDate($("#endTime").val()),
-//            endTimeDisplay: $("#endTime").val(),
-//            notes: $("#notes").val(),
-//            createdAt: new Date(),
-//            participants : [prompt("Who are you?")]
-//        });
-//    }
 });
 
 Template.newEvent.rendered = function () {
@@ -81,5 +66,10 @@ Template.newEvent.rendered = function () {
                 createdAt: new Date(),
                 participants : [prompt("Who are you?")]
             });
+            //clear form
+            $("#place").val("");
+            $("#startTime").val("");
+            $("#endTime").val("");
+            $("#notes").val("");
     });
 };
