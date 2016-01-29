@@ -5,8 +5,52 @@ Template.newEvent.onRendered(function() {
 });
 
 Template.newEvent.events({
-    'click .submit': function(event){
+    'click .submit': function (event) {
         event.preventDefault();
+        var formValidationRules = {
+            on: 'blur',
+            fields: {
+                startTime: {
+                    identifier: 'startTime',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter start time'
+                        }
+                    ]
+                },
+                endTime: {
+                    identifier: 'endTime',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter an end time'
+                        }
+                    ]
+                },
+                place: {
+                    identifier: 'place',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter a location'
+                        }
+                    ]
+                }
+            }
+        }
+        var formSettings = {
+            onSuccess : function (event) {
+
+            }
+        };
+
+        $("form[name='newEventForm']").form(formValidationRules, formSettings);
+        $("form[name='newEventForm']").submit();
+    },
+    'form submit' : function(e) {
+        e.preventDefault();
+        console.log('working');
         console.log("startTime:" + timeToDate($("#startTime").val()));
         Events.insert({
             place: $("#place").val(),
@@ -20,6 +64,8 @@ Template.newEvent.events({
     }
 });
 
+
+
 //$('.ui.form')
 //    .form({
 //        fields: {
@@ -30,7 +76,7 @@ Template.newEvent.events({
 //    })
 //;
 
-//$('.ui.form')
+//$('.field.example form')
 //    .form({
 //        on: 'blur',
 //        fields: {

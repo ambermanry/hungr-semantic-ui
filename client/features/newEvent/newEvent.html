@@ -1,5 +1,5 @@
 <template name="newEvent">
-    <form class="ui form">
+    <form class="ui form" id="newEventForm" name="newEventForm">
         <p>Create your suggestion here.</p>
         <div class="two fields">
             <div class="field">
@@ -21,6 +21,7 @@
             <input placeholder="Description/Notes" name="notes" id="notes" type="text">
         </div>
         <div class="ui blue submit button">Submit</div>
+        <div class="ui error message"></div>
     </form>
 
 </template>
