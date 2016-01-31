@@ -19,18 +19,22 @@ Template.eventList.events({
 
     },
     "click .icon.add.user": function (event) {
+        //join an event
         var eventId = event.target.getAttribute("data-id");
         var newParticipant = prompt("Who are you?");
         if(newParticipant != null) {
             var participants = Events.find({_id: eventId}).fetch()[0].participants;
             participants.push(newParticipant);
             Events.update(eventId, {$set :{participants : participants}});
+            //add comment to Event
+            var joinDate = new Date();
+            var comments = Events.find({_id: eventId}).fetch()[0].comments;
+            var newComment = {user: newParticipant, date: dateToTime(joinDate), message: newParticipant + " joined at: " + dateToTime(joinDate)};
+            comments.push(newComment);
+            Events.update(eventId, {$set :{comments : comments}});
+            //add event to user object
         }
-        var joinDate = new Date();
-        var comments = Events.find({_id: eventId}).fetch()[0].comments;
-        var newComment = {user: newParticipant, date: dateToTime(joinDate), message: newParticipant + " joined at: " + dateToTime(joinDate)};
-        comments.push(newComment);
-        Events.update(eventId, {$set :{comments : comments}});
+
     }
 });
 
