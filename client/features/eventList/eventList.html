@@ -27,24 +27,41 @@
                         <i class="icon dropdown"></i>
                         Comments <i class="comment icon" data-id="{{_id}}"></i>
                     </div>
-                    <div class="content field">
+                    <div class="content">
                         <div class="ui comments">
                         {{#each comments}}
-                            <div class="content">
-                                <a class="author">{{user}}</a>
-                                <div class="metadata">
-                                    <span class="date">Today at {{date}}</span>
-                                </div>
-                                <div class="text">
-                                    {{message}}
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">Reply</a>
+                            <div class="comment">
+                                <div class="content">
+                                    <a class="author">{{user}}</a>
+                                    <div class="metadata">
+                                        <span class="date">Today at {{date}}</span>
+                                    </div>
+                                    <div class="text">
+                                        {{message}}
+                                    </div>
+                                    <div class="actions">
+                                        <a class="reply">Reply</a>
+                                    </div>
+                                    <!--<form class="ui reply form">-->
+                                        <!--<div class="field">-->
+                                            <!--<textarea></textarea>-->
+                                        <!--</div>-->
+                                        <!--<div class="ui primary submit labeled icon button">-->
+                                            <!--<i class="icon edit"></i> Add Reply-->
+                                        <!--</div>-->
+                                    <!--</form>-->
                                 </div>
                             </div>
                         {{/each}}
+                            <form class="ui reply form">
+                                <div class="field">
+                                    <textarea></textarea>
+                                </div>
+                                <div class="ui blue labeled submit icon button" name="addComment" data-event-id="{{_id}}" >
+                                    <i class="icon edit"></i> Add Comment
+                                </div>
+                            </form>
                         </div>
-                        <input placeholder="Add your comments" type="text" class="transition visible" style="display: inline-block !important;">
 
                     </div>
                 </div>
