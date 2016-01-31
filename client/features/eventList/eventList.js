@@ -1,7 +1,20 @@
 Template.eventList.events({
     "click .icon.delete": function (event) {
         event.preventDefault();
-        Events.remove(event.target.getAttribute("data-id"));
+        $('.modal[name="deleteModal"]').modal({
+            onDeny : function () {
+                console.log("no don't delete");
+                return false;
+            },
+            onApprove : function () {
+                console.log("yes, delete");
+                Events.remove(event.target.getAttribute("data-id"));
+                return false;
+            }
+
+        })
+        .modal('show');
+
     },
     "click .icon.users": function (event) {
         var eventId = event.target.getAttribute("data-id");
