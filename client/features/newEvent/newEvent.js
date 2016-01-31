@@ -56,6 +56,9 @@ Template.newEvent.rendered = function () {
             event.preventDefault();
             console.log('working');
             console.log("startTime:" + timeToDate($("#startTime").val()));
+            var newParticipant = [prompt("Who are you?")];
+            var joinDate = new Date();
+            var newComment = {user: newParticipant, date: joinDate, message: newParticipant + " created event at: " + joinDate.getHours() + ":" + joinDate.getMinutes()};
             Events.insert({
                 place: $("#place").val(),
                 startTime: timeToDate($("#startTime").val()),
@@ -64,7 +67,8 @@ Template.newEvent.rendered = function () {
                 endTimeDisplay: $("#endTime").val(),
                 notes: $("#notes").val(),
                 createdAt: new Date(),
-                participants : [prompt("Who are you?")]
+                participants : newParticipant,
+                comments: [newComment]
             });
             //clear form
             $("#place").val("");

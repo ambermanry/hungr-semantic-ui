@@ -25,11 +25,27 @@
                 <div class="ui accordion field">
                     <div class="title active">
                         <i class="icon dropdown"></i>
-                        Comments
+                        Comments <i class="comment icon" data-id="{{_id}}"></i>
                     </div>
                     <div class="content field">
+                        <div class="ui comments">
+                        {{#each comments}}
+                            <div class="content">
+                                <a class="author">{{user}}</a>
+                                <div class="metadata">
+                                    <span class="date">Today at {{date}}</span>
+                                </div>
+                                <div class="text">
+                                    {{message}}
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">Reply</a>
+                                </div>
+                            </div>
+                        {{/each}}
+                        </div>
                         <input placeholder="Add your comments" type="text" class="transition visible" style="display: inline-block !important;">
-                        <i class="comment icon" data-id="{{_id}}"></i>
+
                     </div>
                 </div>
             </div>

@@ -26,6 +26,11 @@ Template.eventList.events({
             participants.push(newParticipant);
             Events.update(eventId, {$set :{participants : participants}});
         }
+        var joinDate = new Date();
+        var comments = Events.find({_id: eventId}).fetch()[0].comments;
+        var newComment = {user: newParticipant, date: joinDate, message: newParticipant + " joined at: " + joinDate.getHours() + ":" + joinDate.getMinutes()};
+        comments.push(newComment);
+        Events.update(eventId, {$set :{comments : comments}});
     }
 });
 
