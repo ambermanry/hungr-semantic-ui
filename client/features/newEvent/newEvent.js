@@ -58,7 +58,7 @@ Template.newEvent.rendered = function () {
             console.log("startTime:" + timeToDate($("#startTime").val()));
             var newParticipant = [prompt("Who are you?")];
             var joinDate = new Date();
-            var newComment = {user: newParticipant, date: dateToTime(joinDate), message: newParticipant + " created event at: " + dateToTime(joinDate)};
+            var newComment = {user: newParticipant, date: dateToTime(joinDate), canModify: false, message: newParticipant + " created event at: " + dateToTime(joinDate)};
             Events.insert({
                 place: $("#place").val(),
                 startTime: timeToDate($("#startTime").val()),
