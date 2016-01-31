@@ -36,17 +36,15 @@ Template.eventList.events({
         }
 
     },
-    "click .button[name='addComment']": function (event) {
+    "click [name='addComment']": function (event) {
         event.preventDefault();
+        var eventId = event.target.getAttribute("data-event-id");
 
-        if ($("#newComment").val()!==null && $("#newComment").val()!=="") {
-            //add comment
-            var eventId = event.target.getAttribute("data-event-id");
-
+        if ($(".newcomment, #" + eventId).val()!==null && $(".newcomment, #" + eventId).val()!=="") {
             //add comment to Event
             var joinDate = new Date();
             var comments = Events.find({_id: eventId}).fetch()[0].comments;
-            var newComment = {user: Session.getDisplayName, date: dateToTime(joinDate), canModify: true, message: $("#newComment").val()};
+            var newComment = {user: Session.getDisplayName, date: dateToTime(joinDate), canModify: true, message: $(".newcomment, #" + eventId).val()};
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
         }
