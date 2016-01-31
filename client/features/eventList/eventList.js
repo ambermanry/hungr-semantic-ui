@@ -18,7 +18,7 @@ Template.eventList.events({
         .modal('show');
 
     },
-    "click .icon.users": function (event) {
+    "click .icon.add.user": function (event) {
         var eventId = event.target.getAttribute("data-id");
         var newParticipant = prompt("Who are you?");
         if(newParticipant != null) {
