@@ -4,12 +4,14 @@ Template.eventList.events({
         $('.modal[name="deleteModal"]').modal({
             onDeny : function () {
                 console.log("no don't delete");
-                return false;
+                $('.modal[name="deleteModal"]').modal('hide');
+//                return false;
             },
             onApprove : function () {
                 console.log("yes, delete");
                 Events.remove(event.target.getAttribute("data-id"));
-                return false;
+                $('.modal[name="deleteModal"]').modal('hide');
+//                return false;
             }
 
         })
