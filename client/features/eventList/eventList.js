@@ -29,7 +29,7 @@ Template.eventList.events({
             //add comment to Event
             var joinDate = new Date();
             var comments = Events.find({_id: eventId}).fetch()[0].comments;
-            var newComment = {user: newParticipant, date: dateToTime(joinDate), canModify: false, message: newParticipant + " joined at: " + dateToTime(joinDate)};
+            var newComment = {user: newParticipant, date: joinDate, displayDate: dateToTime(joinDate), canModify: false, message: newParticipant + " joined at: " + dateToTime(joinDate)};
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
             //add event to user object
@@ -42,9 +42,9 @@ Template.eventList.events({
 
         if ($(".newcomment, #" + eventId).val()!==null && $(".newcomment, #" + eventId).val()!=="") {
             //add comment to Event
-            var joinDate = new Date();
+            var commentDate = new Date();
             var comments = Events.find({_id: eventId}).fetch()[0].comments;
-            var newComment = {user: Session.getDisplayName, date: dateToTime(joinDate), canModify: true, message: $(".newcomment, #" + eventId).val()};
+            var newComment = {user: Session.getDisplayName, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: $(".newcomment, #" + eventId).val()};
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
             //clear textarea
