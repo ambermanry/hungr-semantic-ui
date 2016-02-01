@@ -33,6 +33,7 @@ Template.eventList.events({
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
             //add event to user object
+            Session.set("displayName", newParticipant);
         }
 
     },
