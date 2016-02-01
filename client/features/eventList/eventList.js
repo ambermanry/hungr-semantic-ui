@@ -47,6 +47,8 @@ Template.eventList.events({
             var newComment = {user: Session.getDisplayName, date: dateToTime(joinDate), canModify: true, message: $(".newcomment, #" + eventId).val()};
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
+            //clear textarea
+            $(".newcomment, #" + eventId).val("");
         }
     }
 

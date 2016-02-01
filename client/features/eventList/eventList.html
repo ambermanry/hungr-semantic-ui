@@ -41,6 +41,9 @@
                                     </div>
                                     <div class="actions">
                                         <a class="reply">Reply</a>
+                                        {{#if canModify}}
+                                        <a class="delete" data-user="{{user}}" data-date="{{date}}">Delete</a>
+                                        {{/if}}
                                     </div>
                                     <!--<form class="ui reply form">-->
                                         <!--<div class="field">-->
