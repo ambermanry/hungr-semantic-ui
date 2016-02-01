@@ -70,7 +70,9 @@ Template.newEvent.rendered = function () {
                 participants : newParticipant,
                 comments: [newComment]
             });
-            Session.set("displayName", newParticipant);
+            if (Session.get("userType")=="guest") {
+                Session.set("displayName", newParticipant);
+            }
             //clear form
             $("#place").val("");
             $("#startTime").val("");
