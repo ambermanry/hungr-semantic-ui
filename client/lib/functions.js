@@ -28,3 +28,13 @@ dateToTime = function(date) {
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
 };
+
+//findAndRemove from a json array based on 2 properties
+findAndRemove = function(array, prop1, value1, prop2, value2) {
+    array.forEach(function(result, index) {
+        if(result[prop1] === value1 && result[prop2].toString() === value2) {
+            //Remove from array
+            array.splice(index, 1);
+        }
+    });
+};

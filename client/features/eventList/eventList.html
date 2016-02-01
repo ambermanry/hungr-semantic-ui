@@ -25,10 +25,10 @@
                 <div class="ui accordion field">
                     <div class="title active">
                         <i class="icon dropdown"></i>
-                        Comments <i class="comment icon" data-id="{{_id}}"></i>
+                        Comments <i class="comment icon" data-event-id="{{_id}}"></i>
                     </div>
                     <div class="content">
-                        <div class="ui comments">
+                        <div class="ui comments" data-event-id="{{_id}}">
                         {{#each comments}}
                             <div class="comment">
                                 <div class="content">
@@ -40,10 +40,10 @@
                                         {{message}}
                                     </div>
                                     <div class="actions">
-                                        <a class="reply">Reply</a>
-                                        {{#if canModify}}
-                                        <a class="delete" data-user="{{user}}" data-date="{{date}}">Delete</a>
-                                        {{/if}}
+                                        <!--{{#if canModify}}-->
+                                            <a class="reply">Reply</a>
+                                            <a name="deleteComment" class="delete" data-event-id="{{_id}}" data-user="{{user}}" data-date="{{date}}">Delete</a>
+                                        <!--{{/if}}-->
                                     </div>
                                     <!--<form class="ui reply form">-->
                                         <!--<div class="field">-->

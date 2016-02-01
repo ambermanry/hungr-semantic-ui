@@ -44,12 +44,24 @@ Template.eventList.events({
             //add comment to Event
             var commentDate = new Date();
             var comments = Events.find({_id: eventId}).fetch()[0].comments;
-            var newComment = {user: Session.getDisplayName, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: $(".newcomment, #" + eventId).val()};
+            var newComment = {user: Session.get('displayName'), date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: $(".newcomment, #" + eventId).val()};
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
             //clear textarea
             $(".newcomment, #" + eventId).val("");
         }
+    },
+    //delete comment
+    "click [name='deleteComment']": function (event) {
+        event.preventDefault();
+        //grab event id from the Comments header
+        var eventId = $(event.target).closest(".comments").data("event-id");
+        var user = event.target.getAttribute("data-user");
+        var date = event.target.getAttribute("data-date");
+        var comments = Events.find({_id: eventId}).fetch()[0].comments;
+        findAndRemove(comments, "user", user, "date", date);
+        Events.update(eventId, {$set :{comments : comments}});
+
     }
 
 });
