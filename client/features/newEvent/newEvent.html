@@ -1,7 +1,7 @@
 <template name="newEvent">
     <form class="ui form" id="newEventForm" name="newEventForm">
-        <p>Create your suggestion here.</p>
-        <div class="two fields">
+        <h4>Create your suggestion here.</h4>
+        <div class="three fields">
             <div class="field">
                 <label>Start Time</label>
                 <input placeholder="Start Time" id="startTime" name="startTime" type="text">
@@ -10,12 +10,11 @@
                 <label>End Time</label>
                 <input placeholder="End Time" id="endTime" name="endTime" type="text">
             </div>
+            <div class="field">
+                <label>Location</label>
+                <input placeholder="Ex: Panera" name="place" id="place" type="text">
+            </div>
         </div>
-        <div class="field">
-            <label>Location</label>
-            <input placeholder="Ex: Panera" name="place" id="place" type="text">
-        </div>
-        <input type="hidden" id="numAttending" name="numAttending" value="1"/>
         <div class="field">
             <label>Notes</label>
             <input placeholder="Description/Notes" name="notes" id="notes" type="text">
