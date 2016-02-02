@@ -22,5 +22,27 @@
         <div class="ui blue submit button">Submit</div>
         <div class="ui error message"></div>
     </form>
+    <!--  displayName modal -->
+    <div class="ui modal" name="displayNameModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Enter display name
+        </div>
+        <div class="content">
+            <div class="field">
+                <label>Who is this?</label>
+                <input placeholder="John Doe" id="newDisplayName" name="newDisplayName" type="text">
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                Cancel
+            </div>
+            <div class="ui positive right labeled icon button">
+                Yep, that's me
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
 
 </template>
