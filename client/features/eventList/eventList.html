@@ -3,8 +3,6 @@
         <div class="item">
             <div class="content">
                 <div class="header"><div class="ui blue ribbon label">{{startTimeDisplay}} - {{endTimeDisplay}}</div> {{place}}</div>
-
-                <h4 class="ui sub header">people going: {{participants}} </h4>
                 <div class="ui right floated main menu">
                     <a class="bug popup icon item" data-content="Join">
                         <i class="add user icon" data-id="{{_id}}"></i>
@@ -16,6 +14,9 @@
                         <i class="delete icon" data-id="{{_id}}"></i>
                     </a>
                 </div>
+                <div class="ui horizontal divider"></div>
+                <div class="meta blue">People going: {{participants}} </div>
+                <div class="ui horizontal divider"></div>
                 <div class="meta">
                     <span>Notes</span>
                 </div>
