@@ -85,4 +85,14 @@ Template.eventList.events({
 
 Template.eventList.rendered = function () {
     $('.ui.accordion').accordion();
+    $('.button')
+        .popup({
+            inline: true
+        })
+    ;
+    $('.popup')
+        .popup({
+            inline: true
+        })
+    ;
 };

@@ -7,7 +7,7 @@
                     <a class="bug popup icon item" data-content="Join">
                         <i class="add user icon" data-id="{{_id}}"></i>
                     </a>
-                    <a class="bug popup icon item" data-content="Edit" >
+                    <a class="bug popup icon item" data-content="Edit - coming soon" >
                         <i class="edit icon" data-id="{{_id}}"></i>
                     </a>
                     <a class="bug popup icon item" data-content="Delete" >
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="actions">
                                         {{#if canModify}}
-                                            <a class="reply">Reply</a>
+                                            <!--<a class="reply">Reply</a>-->
                                             <a name="deleteComment" class="delete" data-event-id="{{_id}}" data-user="{{user}}" data-date="{{date}}">Delete</a>
                                         {{/if}}
                                     </div>
@@ -61,7 +61,7 @@
                                 <div class="field">
                                     <textarea class="newcomment" data-event-id="{{_id}}"></textarea>
                                 </div>
-                                <div class="ui blue labeled submit icon button" name="addComment" data-event-id="{{_id}}" >
+                                <div class="ui blue labeled submit icon button" data-content="Post your comments." name="addComment" data-event-id="{{_id}}" >
                                     <i class="icon edit"></i> Add Comment
                                 </div>
                             </form>
