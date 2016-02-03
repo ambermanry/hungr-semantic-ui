@@ -23,7 +23,7 @@ Template.eventList.events({
         var eventId = event.target.getAttribute("data-id");
         var newParticipant = Session.get("displayName");
 
-        if (Session.get("userType")=="guest" && !Session.get("hasChangedDisplay")) {
+        if (Session.get("userType")=="guest" && (!Session.get("hasChangedDisplay") || typeof Session.get("hasChangedDisplay")=="undefined")) {
             newParticipant= prompt("Who are you?");
         }
         if(newParticipant != null) {
@@ -37,7 +37,7 @@ Template.eventList.events({
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
             //add event to user object
-            if (Session.get("userType")=="guest" && !Session.get("hasChangedDisplay")) {
+            if (Session.get("userType")=="guest" && (!Session.get("hasChangedDisplay") || typeof Session.get("hasChangedDisplay")=="undefined")) {
                 Session.set("displayName", newParticipant);
                 Session.set("hasChangedDisplay", true);
             }
@@ -53,7 +53,7 @@ Template.eventList.events({
             var commentDate = new Date();
             var comments = Events.find({_id: eventId}).fetch()[0].comments;
             var newParticipant;
-            if (Session.get("userType")=="guest" && !Session.get("hasChangedDisplay")) {
+            if (Session.get("userType")=="guest" && (!Session.get("hasChangedDisplay") || typeof Session.get("hasChangedDisplay")=="undefined")) {
                 newParticipant = prompt("Who are you?");
                 Session.set("displayName", newParticipant);
                 Session.set("hasChangedDisplay", true);
