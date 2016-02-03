@@ -40,16 +40,31 @@ findAndRemove = function(array, prop1, value1, prop2, value2) {
 };
 
 //Create new Guest Record and save id in localstorage
-createGuest = function(displayName, events) {
+createGuest = function(displayName) {
     var id;
     var guest = {
         displayName: displayName,
-        events: events
+        events: []
     };
 
     Guests.insert(guest, function(error,docInserted) {
-        id = docInserted;
+        Session.set("guestId", docInserted);
     });
-    localStorage.setItem("guestId", id);
-    return id;
+    localStorage.setItem("guestId", Session.get("guestId"));
+};
+
+addEventToGuest = function(eventId, guestId) {
+    var currentEvents = Guests.find({_id: guestId}).fetch()[0].events;
+    var newEvents = currentEvents.push(eventId);
+    Guests.update(guestId, {$set :{events : newEvents}});
+};
+
+createEvent = function (event,displayName) {
+    //create guest record
+    createGuest(displayName);
+
+    Events.insert(event, function(error,docInserted) {
+        var guestId = localstorage.get("guestId");
+        addEventToGuest(docInserted,guestId);
+    });
 };
