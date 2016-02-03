@@ -48,9 +48,12 @@ createGuest = function(displayName) {
     };
 
     Guests.insert(guest, function(error,docInserted) {
-        Session.set("guestId", docInserted);
+        console.log("in guest insert cb");
+        //TODO figure out whay Session and localStorage is out of scope!
+        //Session.set("guestId", docInserted);
+        window.localStorage.setItem("guestId", docInserted);
     });
-    localStorage.setItem("guestId", Session.get("guestId"));
+
 };
 
 addEventToGuest = function(eventId, guestId) {
