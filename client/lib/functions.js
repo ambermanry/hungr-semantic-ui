@@ -38,3 +38,18 @@ findAndRemove = function(array, prop1, value1, prop2, value2) {
         }
     });
 };
+
+//Create new Guest Record and save id in localstorage
+createGuest = function(displayName, events) {
+    var id;
+    var guest = {
+        displayName: displayName,
+        events: events
+    };
+
+    Guests.insert(guest, function(error,docInserted) {
+        id = docInserted;
+    });
+    localStorage.setItem("guestId", id);
+    return id;
+};

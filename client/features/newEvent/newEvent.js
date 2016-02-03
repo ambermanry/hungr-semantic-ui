@@ -68,7 +68,8 @@ Template.newEvent.rendered = function () {
                         // = [prompt("Who are you?")];
                         var joinDate = new Date();
                         var newComment = {user: newParticipant, date: joinDate, displayDate: dateToTime(joinDate), canModify: false, message: newParticipant + " created event at: " + dateToTime(joinDate)};
-                        Events.insert({
+                        var eventId;
+                        var event = {
                             place: $("#place").val(),
                             startTime: timeToDate($("#startTime").val()),
                             startTimeDisplay: $("#startTime").val(),
@@ -78,7 +79,11 @@ Template.newEvent.rendered = function () {
                             createdAt: new Date(),
                             participants : [newParticipant],
                             comments: [newComment]
+                        };
+                        Events.insert(event, function(error,docInserted) {
+                            eventId = docInserted;
                         });
+                        createGuest(newParticipant,[eventId]);
                         Session.set("displayName", newParticipant);
                         Session.set("hasChangedDisplay",true);
                         //clear form
