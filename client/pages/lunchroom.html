@@ -8,3 +8,15 @@
 <template name="lunchroomDisplay">
 
 </template>
+
+<template name="lunchrooms">
+    <div class="ui grid">
+        <div class="three wide column stretched">
+            {{> lunchroomsMenu}}
+        </div>
+        <div class="twelve wide column">
+            {{> lunchroomsDisplay}}
+        </div>
+        <div class="one wide column"></div>
+    </div>
+</template>

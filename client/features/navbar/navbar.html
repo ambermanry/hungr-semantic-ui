@@ -3,7 +3,7 @@
         <h3 class="header item">Hungr</h3>
         
         {{#if currentUser}}
-            <a class="item">Lunchrooms</a>
+            <a class="item" href="{{pathFor route='lunchrooms'}}">Lunchrooms</a>
             <div class="ui floating right dropdown icon item" id="account">
                 <span class="text">Account</span>
                 <i class="dropdown icon"></i>
@@ -13,7 +13,13 @@
                 </div>
             </div>
         {{else}}
-                <a class="float right item" href="#" name="signIn">Login</a>
+            <div class="right menu">
+                <div class="custom menuitem">
+                    <input type="text" placeholder="Display Name" value="Guest" name="displayName" />
+                </div>
+                <a class="item" href="#" name="signIn">Login</a>
+            </div>
         {{/if}}
     </nav>
+    {{> accountSession}}
 </template>

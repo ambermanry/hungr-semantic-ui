@@ -9,11 +9,6 @@
     <div class="pusher">
 	    {{> navbar}}
 	    {{> loginModal}}
-        {{#if currentUser}}
-            {{> loginMessage}}
-        {{else}}
-            {{> guestMessage}}
-        {{/if}}
         {{> yield}}
 	</div>
 </template>

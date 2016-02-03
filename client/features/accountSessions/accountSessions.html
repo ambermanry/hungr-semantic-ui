@@ -1,0 +1,17 @@
+<template name="accountSession">
+</template>
+
+<template name="statusMessage">
+    <div class="ui floating icon message {{color}}">
+        <i class="ui icon {{icon}}"></i>
+        <div class="content">
+        <div class="header">{{header}}
+            {{#if showDisplayNameInHeader}}
+                {{displayName}}
+            {{/if}}
+        </div>
+            <p>{{message}}</p>
+        </div>
+        <i class="close icon"></i>
+    </div>
+</template>
