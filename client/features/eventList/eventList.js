@@ -21,7 +21,11 @@ Template.eventList.events({
     "click .icon.add.user": function (event) {
         //join an event
         var eventId = event.target.getAttribute("data-id");
-        var newParticipant = prompt("Who are you?");
+        var newParticipant = Session.get("displayName");
+
+        if (Session.get("userType")=="guest" && !Session.get("hasChangedDisplay")) {
+            newParticipant= prompt("Who are you?");
+        }
         if(newParticipant != null) {
             var participants = Events.find({_id: eventId}).fetch()[0].participants;
             participants.push(newParticipant);
@@ -33,8 +37,9 @@ Template.eventList.events({
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
             //add event to user object
-            if (Session.get("userType")=="guest") {
+            if (Session.get("userType")=="guest" && !Session.get("hasChangedDisplay")) {
                 Session.set("displayName", newParticipant);
+                Session.set("hasChangedDisplay", true);
             }
         }
 
@@ -48,9 +53,10 @@ Template.eventList.events({
             var commentDate = new Date();
             var comments = Events.find({_id: eventId}).fetch()[0].comments;
             var newParticipant;
-            if (Session.get("userType")=="guest") {
+            if (Session.get("userType")=="guest" && !Session.get("hasChangedDisplay")) {
                 newParticipant = prompt("Who are you?");
                 Session.set("displayName", newParticipant);
+                Session.set("hasChangedDisplay", true);
             } else {
                 newParticipant = Session.get("displayName");
             }

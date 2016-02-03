@@ -55,7 +55,7 @@ Template.newEvent.rendered = function () {
         .on("submit", "form[name='newEventForm']", function (event) {
             event.preventDefault();
             var newParticipant = Session.get("displayName");
-            if (Session.get("userType") == "guest") {
+            if (Session.get("userType") == "guest" && !Session.get("hasChangedDisplay")) {
                 $('.modal[name="displayNameModal"]').modal({
                     onDeny : function () {
                         console.log("cancel");
@@ -80,6 +80,7 @@ Template.newEvent.rendered = function () {
                             comments: [newComment]
                         });
                         Session.set("displayName", newParticipant);
+                        Session.set("hasChangedDisplay",true);
                         //clear form
                         $("#place").val("");
                         $("#startTime").val("");
@@ -103,9 +104,7 @@ Template.newEvent.rendered = function () {
                     participants : [newParticipant],
                     comments: [newComment]
                 });
-                if (Session.get("userType")=="guest") {
-                    Session.set("displayName", newParticipant);
-                }
+
                 //clear form
                 $("#place").val("");
                 $("#startTime").val("");
