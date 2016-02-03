@@ -76,7 +76,7 @@ Template.newEvent.rendered = function () {
                             endTimeDisplay: $("#endTime").val(),
                             notes: $("#notes").val(),
                             createdAt: new Date(),
-                            participants : newParticipant,
+                            participants : [newParticipant],
                             comments: [newComment]
                         });
                         Session.set("displayName", newParticipant);
@@ -100,7 +100,7 @@ Template.newEvent.rendered = function () {
                     endTimeDisplay: $("#endTime").val(),
                     notes: $("#notes").val(),
                     createdAt: new Date(),
-                    participants : newParticipant,
+                    participants : [newParticipant],
                     comments: [newComment]
                 });
                 if (Session.get("userType")=="guest") {
