@@ -50,14 +50,6 @@ Template.eventList.events({
                 comments.push(newComment);
                 Events.update(eventId, {$set :{comments : comments}});
             }
-//            if (!hasGuestChangedName()) {
-//                newParticipant = prompt("Who are you?");
-//                Session.set("displayName", newParticipant);
-//                Session.set("hasChangedDisplay", true);
-//                createGuest(newParticipant);
-//            } else {
-//                newParticipant = getDisplayName();
-//            }
 
             //clear textarea
             $("textarea[data-event-id='" + eventId + "']").val("");
