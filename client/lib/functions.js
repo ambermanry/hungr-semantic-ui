@@ -62,7 +62,7 @@ addEventToGuest = function(eventId, guestId) {
     Guests.update(guestId, {$set :{events : newEvents}});
 };
 
-createEvent = function (event,displayName) {
+insertEvent = function (event,displayName) {
     //create guest record
     createGuest(displayName);
 
@@ -86,4 +86,26 @@ getDisplayName = function() {
     else  {
         return Session.get("displayName");
     }
+}
+
+showDisplayNameModal = function(event) {
+    $('.modal[name="displayNameModal"]').modal({
+        onDeny : function () {
+            console.log("cancel");
+            $('.modal[name="displayNameModal"]').modal('hide');
+        },
+        onApprove : function () {
+            console.log("yes, entered user name:" + $("#newDisplayName").val());
+            var newParticipant = $("#newDisplayName").val();
+            // create new event
+            // = [prompt("Who are you?")];
+
+            Session.set("displayName", newParticipant);
+            Session.set("hasChangedDisplay",true);
+            event.participants = [newParticipant];
+            insertEvent(event,newParticipant);
+            $('.modal[name="displayNameModal"]').modal('hide');
+        }
+    })
+    .modal('show');
 }
