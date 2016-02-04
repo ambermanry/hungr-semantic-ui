@@ -67,7 +67,7 @@ insertEvent = function (event,displayName) {
     createGuest(displayName);
 
     Events.insert(event, function(error,docInserted) {
-        var guestId = localStorage.get("guestId");
+        var guestId = localStorage.getItem("guestId");
         addEventToGuest(docInserted,guestId);
     });
 };
@@ -81,7 +81,9 @@ hasGuestChangedName = function() {
 getDisplayName = function() {
     if (Session.get("userType")=="guest" && (typeof localStorage.getItem("guestId") !== undefined)) {
         var guestId = localStorage.getItem("guestId");
-        return Guests.find({_id: guestId}).fetch()[0].displayName;
+        if (Guests.find({_id: guestId}).fetch().length === 1) {
+            return Guests.find({_id: guestId}).fetch()[0].displayName;
+        }
     } //else if guest and localstorage is not set
     else  {
         return Session.get("displayName");
@@ -102,7 +104,7 @@ showDisplayNameModal = function(action,event) {
 
             Session.set("displayName", newParticipant);
             Session.set("hasChangedDisplay",true);
-            switch($(this).data("method")) {
+            switch(action) {
                 case 'createEvent' :
                     event.participants = [newParticipant];
                     insertEvent(event,newParticipant);
