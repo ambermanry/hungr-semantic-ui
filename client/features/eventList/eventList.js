@@ -22,26 +22,15 @@ Template.eventList.events({
         //join an event
         var eventId = event.target.getAttribute("data-id");
         var newParticipant = getDisplayName();
+        var event = Events.find({_id: eventId}).fetch()[0];
 
-        if (!hasGuestChangedName()) {
-            newParticipant= prompt("Who are you?");
-            createGuest(newParticipant);
+        if (getDisplayName()=="Guest") {
+            showDisplayNameModal("joinEvent",event);
+            Session.set("displayName", newParticipant);
+            Session.set("hasChangedDisplay", true);
         }
-        if(newParticipant != null) {
-            var participants = Events.find({_id: eventId}).fetch()[0].participants;
-            participants.push(newParticipant);
-            Events.update(eventId, {$set :{participants : participants}});
-            //add comment to Event
-            var joinDate = new Date();
-            var comments = Events.find({_id: eventId}).fetch()[0].comments;
-            var newComment = {user: newParticipant, date: joinDate, displayDate: dateToTime(joinDate), canModify: false, message: newParticipant + " joined at: " + dateToTime(joinDate)};
-            comments.push(newComment);
-            Events.update(eventId, {$set :{comments : comments}});
-            //add event to user object
-            if (!hasGuestChangedName()) {
-                Session.set("displayName", newParticipant);
-                Session.set("hasChangedDisplay", true);
-            }
+        else {
+            joinEvent(eventId,newParticipant);
         }
 
     },

@@ -110,6 +110,7 @@ showDisplayNameModal = function(action,event) {
                     insertEvent(event,newParticipant);
                     break;
                 case 'joinEvent':
+                    joinEvent(event._id,newParticipant);
                     break;
                 case 'comment':
                     break;
@@ -119,4 +120,16 @@ showDisplayNameModal = function(action,event) {
         }
     })
     .modal('show');
+};
+
+joinEvent = function(eventId,newParticipant) {
+    var participants = Events.find({_id: eventId}).fetch()[0].participants;
+    participants.push(newParticipant);
+    Events.update(eventId, {$set :{participants : participants}});
+    //add comment to Event
+    var joinDate = new Date();
+    var comments = Events.find({_id: eventId}).fetch()[0].comments;
+    var newComment = {user: newParticipant, date: joinDate, displayDate: dateToTime(joinDate), canModify: false, message: newParticipant + " joined at: " + dateToTime(joinDate)};
+    comments.push(newComment);
+    Events.update(eventId, {$set :{comments : comments}});
 }
