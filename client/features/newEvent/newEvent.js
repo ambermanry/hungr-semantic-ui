@@ -55,7 +55,7 @@ Template.newEvent.rendered = function () {
         .on("submit", "form[name='newEventForm']", function (event) {
             event.preventDefault();
             var newParticipant = Session.get("displayName");
-            if (Session.get("userType") == "guest" && (!Session.get("hasChangedDisplay") || typeof Session.get("hasChangedDisplay")=="undefined")) {
+            if (!hasGuestChangedName()) {
                 $('.modal[name="displayNameModal"]').modal({
                     onDeny : function () {
                         console.log("cancel");

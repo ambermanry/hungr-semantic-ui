@@ -71,3 +71,9 @@ createEvent = function (event,displayName) {
         addEventToGuest(docInserted,guestId);
     });
 };
+
+hasGuestChangedName = function() {
+    if (Session.get("userType")=="guest" && Session.get("hasChangedDisplay")==true) {
+        return true;
+    } else return false;
+}
