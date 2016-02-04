@@ -44,7 +44,6 @@ createGuest = function(displayName) {
     var id;
     var guest = {
         displayName: displayName,
-        events: []
     };
 
     Guests.insert(guest, function(error,docInserted) {
@@ -58,6 +57,9 @@ createGuest = function(displayName) {
 
 addEventToGuest = function(eventId, guestId) {
     var currentEvents = Guests.find({_id: guestId}).fetch()[0].events;
+    if (typeof currentEvents === 'undefined') {
+        currentEvents = [];
+    }
     var newEvents = currentEvents.push(eventId);
     Guests.update(guestId, {$set :{events : newEvents}});
 };
