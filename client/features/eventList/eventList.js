@@ -26,8 +26,6 @@ Template.eventList.events({
 
         if (getDisplayName()=="Guest") {
             showDisplayNameModal("joinEvent",event);
-            Session.set("displayName", newParticipant);
-            Session.set("hasChangedDisplay", true);
         }
         else {
             joinEvent(eventId,newParticipant);
@@ -37,23 +35,30 @@ Template.eventList.events({
     "click [name='addComment']": function (event) {
         event.preventDefault();
         var eventId = event.target.getAttribute("data-event-id");
-
-        if ($("textarea[data-event-id='" + eventId + "']").val() !== "") {
+        var commentMessage = $("textarea[data-event-id='" + eventId + "']").val();
+        if (commentMessage !== "") {
             //add comment to Event
             var commentDate = new Date();
-            var comments = Events.find({_id: eventId}).fetch()[0].comments;
-            var newParticipant;
-            if (!hasGuestChangedName()) {
-                newParticipant = prompt("Who are you?");
-                Session.set("displayName", newParticipant);
-                Session.set("hasChangedDisplay", true);
-                createGuest(newParticipant);
-            } else {
-                newParticipant = getDisplayName();
+            var event = Events.find({_id: eventId}).fetch()[0];
+            var newParticipant = getDisplayName();
+            if (newParticipant=="Guest") {
+                showDisplayNameModal("addComment",event,commentMessage);
             }
-            var newComment = {user: newParticipant, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: $("textarea[data-event-id='" + eventId + "']").val()};
-            comments.push(newComment);
-            Events.update(eventId, {$set :{comments : comments}});
+            else {
+                var comments = Events.find({_id: eventId}).fetch()[0].comments;
+                var newComment = {user: newParticipant, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: commentMessage};
+                comments.push(newComment);
+                Events.update(eventId, {$set :{comments : comments}});
+            }
+//            if (!hasGuestChangedName()) {
+//                newParticipant = prompt("Who are you?");
+//                Session.set("displayName", newParticipant);
+//                Session.set("hasChangedDisplay", true);
+//                createGuest(newParticipant);
+//            } else {
+//                newParticipant = getDisplayName();
+//            }
+
             //clear textarea
             $("textarea[data-event-id='" + eventId + "']").val("");
 

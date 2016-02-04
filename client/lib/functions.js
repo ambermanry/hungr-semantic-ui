@@ -63,8 +63,6 @@ addEventToGuest = function(eventId, guestId) {
 };
 
 insertEvent = function (event,displayName) {
-    //create guest record
-    createGuest(displayName);
 
     Events.insert(event, function(error,docInserted) {
         var guestId = localStorage.getItem("guestId");
@@ -83,6 +81,8 @@ getDisplayName = function() {
         var guestId = localStorage.getItem("guestId");
         if (Guests.find({_id: guestId}).fetch().length === 1) {
             return Guests.find({_id: guestId}).fetch()[0].displayName;
+        } else {
+            return Session.get("displayName");
         }
     } //else if guest and localstorage is not set
     else  {
@@ -90,7 +90,7 @@ getDisplayName = function() {
     }
 }
 
-showDisplayNameModal = function(action,event) {
+showDisplayNameModal = function(action,event,commentMessage) {
     $('.modal[name="displayNameModal"]').modal({
         onDeny : function () {
             console.log("cancel");
@@ -99,9 +99,8 @@ showDisplayNameModal = function(action,event) {
         onApprove : function () {
             console.log("yes, entered user name:" + $("#newDisplayName").val());
             var newParticipant = $("#newDisplayName").val();
-            // create new event
-            // = [prompt("Who are you?")];
-
+            //create guest record
+            createGuest(newParticipant);
             Session.set("displayName", newParticipant);
             Session.set("hasChangedDisplay",true);
             switch(action) {
@@ -112,7 +111,12 @@ showDisplayNameModal = function(action,event) {
                 case 'joinEvent':
                     joinEvent(event._id,newParticipant);
                     break;
-                case 'comment':
+                case 'addComment':
+                    var comments = event.comments;
+                    var commentDate = new Date();
+                    var newComment = {user: newParticipant, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: commentMessage};
+                    comments.push(newComment);
+                    Events.update(event._id, {$set :{comments : comments}});
                     break;
             };
 
