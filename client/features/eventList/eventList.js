@@ -21,10 +21,11 @@ Template.eventList.events({
     "click .icon.add.user": function (event) {
         //join an event
         var eventId = event.target.getAttribute("data-id");
-        var newParticipant = Session.get("displayName");
+        var newParticipant = getDisplayName();
 
-        if (Session.get("userType")=="guest" && (!Session.get("hasChangedDisplay") || typeof Session.get("hasChangedDisplay")=="undefined")) {
+        if (!hasGuestChangedName()) {
             newParticipant= prompt("Who are you?");
+            createGuest(newParticipant);
         }
         if(newParticipant != null) {
             var participants = Events.find({_id: eventId}).fetch()[0].participants;
@@ -57,8 +58,9 @@ Template.eventList.events({
                 newParticipant = prompt("Who are you?");
                 Session.set("displayName", newParticipant);
                 Session.set("hasChangedDisplay", true);
+                createGuest(newParticipant);
             } else {
-                newParticipant = Session.get("displayName");
+                newParticipant = getDisplayName();
             }
             var newComment = {user: newParticipant, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: $("textarea[data-event-id='" + eventId + "']").val()};
             comments.push(newComment);

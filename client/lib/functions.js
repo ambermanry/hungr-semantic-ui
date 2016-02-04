@@ -67,7 +67,7 @@ createEvent = function (event,displayName) {
     createGuest(displayName);
 
     Events.insert(event, function(error,docInserted) {
-        var guestId = localstorage.get("guestId");
+        var guestId = localStorage.get("guestId");
         addEventToGuest(docInserted,guestId);
     });
 };
@@ -76,4 +76,14 @@ hasGuestChangedName = function() {
     if (Session.get("userType")=="guest" && Session.get("hasChangedDisplay")==true) {
         return true;
     } else return false;
+}
+
+getDisplayName = function() {
+    if (Session.get("userType")=="guest" && (typeof localStorage.getItem("guestId") !== undefined)) {
+        var guestId = localStorage.getItem("guestId");
+        return Guests.find({_id: guestId}).fetch()[0].displayName;
+    } //else if guest and localstorage is not set
+    else  {
+        return Session.get("displayName");
+    }
 }
