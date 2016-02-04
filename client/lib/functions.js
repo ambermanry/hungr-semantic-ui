@@ -88,7 +88,7 @@ getDisplayName = function() {
     }
 }
 
-showDisplayNameModal = function(event) {
+showDisplayNameModal = function(action,event) {
     $('.modal[name="displayNameModal"]').modal({
         onDeny : function () {
             console.log("cancel");
@@ -102,8 +102,17 @@ showDisplayNameModal = function(event) {
 
             Session.set("displayName", newParticipant);
             Session.set("hasChangedDisplay",true);
-            event.participants = [newParticipant];
-            insertEvent(event,newParticipant);
+            switch($(this).data("method")) {
+                case 'createEvent' :
+                    event.participants = [newParticipant];
+                    insertEvent(event,newParticipant);
+                    break;
+                case 'joinEvent':
+                    break;
+                case 'comment':
+                    break;
+            };
+
             $('.modal[name="displayNameModal"]').modal('hide');
         }
     })

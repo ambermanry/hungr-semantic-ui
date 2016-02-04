@@ -71,7 +71,7 @@ Template.newEvent.rendered = function () {
             };
 
             if (getDisplayName()=="Guest") {
-                showDisplayNameModal(event);
+                showDisplayNameModal("createEvent",event);
             }
             else {
                 insertEvent(event,newParticipant);
