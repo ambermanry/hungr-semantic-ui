@@ -48,7 +48,7 @@ Template.eventList.events({
         event.preventDefault();
         var eventId = event.target.getAttribute("data-event-id");
 
-        if ($(".newcomment, #" + eventId).val()!==null && $(".newcomment, #" + eventId).val()!=="") {
+        if ($("textarea[data-event-id='" + eventId + "']").val() !== "") {
             //add comment to Event
             var commentDate = new Date();
             var comments = Events.find({_id: eventId}).fetch()[0].comments;
@@ -60,11 +60,11 @@ Template.eventList.events({
             } else {
                 newParticipant = Session.get("displayName");
             }
-            var newComment = {user: newParticipant, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: $(".newcomment, #" + eventId).val()};
+            var newComment = {user: newParticipant, date: commentDate, displayDate: dateToTime(commentDate), canModify: true, message: $("textarea[data-event-id='" + eventId + "']").val()};
             comments.push(newComment);
             Events.update(eventId, {$set :{comments : comments}});
             //clear textarea
-            $(".newcomment, #" + eventId).val("");
+            $("textarea[data-event-id='" + eventId + "']").val("");
 
         }
     },
